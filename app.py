@@ -9,6 +9,5 @@ def load_components():
     video_title()
     video_info_container()
 
-
 if __name__ == '__main__':
     main()
