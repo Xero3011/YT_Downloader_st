@@ -39,7 +39,7 @@ def video_info_container():
                 _video_properties()
             with col_download:
                 mp4download_btn(st.session_state.link)
-                mp3download_btn()
+                mp3download_btn(st.session_state.link)
     
 def _video_player():
     try:
@@ -55,19 +55,19 @@ def mp4download_btn(link):
         downloadmp4(link)
         
 def downloadmp4(link):
-    path = os.path.join(os.path.expanduser("~"), "Downloads")
+    path = os.path.join(os.path.expanduser("~"), "Desktop/Visual Studio Code/Downloaded/Video")
     # YouTube('https://youtu.be/9bZkp7q19f0').streams.first().download(path)
     yt = YouTube(link)
     yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').asc().first().download(path)
     
         
-def mp3download_btn():
+def mp3download_btn(link):
     if st.button("MP3 Download"):
-        downloadmp3()
+        downloadmp3(link)
         
-def downloadmp3():
-    path = os.path.join(os.path.expanduser("~"), "Downloads")
-    yt = YouTube()
+def downloadmp3(link):
+    path = os.path.join(os.path.expanduser("~"), "Desktop/Visual Studio Code/Downloaded/Sound")
+    yt = YouTube(link)
     streams = yt.streams.filter(only_audio=True)
     stream = streams.first()
     stream.download(path)
